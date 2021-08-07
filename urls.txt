@@ -1,7 +1,2 @@
-https://devssecops.blogspot.com/2021/08/python3-web-crawler-selenium-chrome.html
-https://devssecops.blogspot.com/2021/08/multiple-proxy-servers-in-selenium-web.html
-https://devssecops.blogspot.com/2021/07/sql-update-statement-example-queries.html
-https://www.google.com/search?q=shawal+ahmad+mohmand
-https://devssecops.blogspot.com/2021/07/how-to-create-bootable-windows-11-usb.html
-https://devssecops.blogspot.com/2021/07/what-is-hacking-types-of-hackers.html
-https://devssecops.blogspot.com/2021/07/how-to-update-windows-10-to-windows-11.html
+https://www.youtube.com/watch?v=uAQCAYQgoqs
+https://www.youtube.com/watch?v=Gq0YD1E8f70&t=2s
