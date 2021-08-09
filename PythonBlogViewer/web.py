@@ -4,7 +4,7 @@ from selenium import webdriver
 import time
 import random
 import urllib.request , socket
-# from seleniumwire import webdriver  # Import from seleniumwire
+from anonymize import Anonymize
 
 chrome_driver_path = ChromeDriverManager().install()
 socket.setdefaulttimeout(180)
@@ -96,8 +96,14 @@ for p in proxies:
         for u in urls:
             url = u
             try:
+                user_agent = Anonymize.generate_user_agent(Anonymize)
+                # options.add_argument('referer="https://devssecops.blogspot.com"')
+                options.add_argument('user-agent="'+ user_agent +'"')
                 browser = webdriver.Chrome(chrome_driver_path, options=options)
                 if pass_random_urls: url = random.choice(urls)
+                os.system('cls||clear')
+                print("proxy set:", p)
+                print("user agent set:", user_agent)
                 print("Opening url:",url)
                 browser.get(url)
                 time.sleep(int(stay_on_page))
