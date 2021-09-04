@@ -11,7 +11,7 @@ socket.setdefaulttimeout(180)
 stay_on_page = 15
 pass_random_urls = False
 
-def is_bad_proxy(pip):    
+def is_bad_proxy(pip):
     try:        
         proxy_handler = urllib.request.ProxyHandler({'http': pip})        
         opener = urllib.request.build_opener(proxy_handler)
@@ -38,13 +38,6 @@ def read_urls_from_file(file='urls.txt'):
     with open('urls.txt') as f:
         urls = f.readlines()
     return urls
-
-# Create a request interceptor
-def interceptor(request):
-    del request.headers['User-Agent']  # Delete the header first
-    request.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1'
-    del request.headers['referer']  # Delete the header first
-    request.headers['referer'] = 'https://www.google.com'
 
 proxies = read_proxies_from_file()
 if len(proxies) < 1 :
@@ -88,10 +81,7 @@ for p in proxies:
         options = webdriver.chrome.options.Options()
         options.add_argument(chrome_driver_path)
         options.add_argument("--disable-extensions") # optional and off-topic, but it conveniently prevents the popup 'Disable developer mode extensions' 
-        # options.add_argument('--proxy-server=%s' % p)
-        
-        # Set the interceptor on the driver
-        # browser.request_interceptor = interceptor
+        options.add_argument('--proxy-server=%s' % p)
 
         for u in urls:
             url = u
@@ -99,6 +89,7 @@ for p in proxies:
                 user_agent = Anonymize.generate_user_agent(Anonymize)
                 # options.add_argument('referer="https://devssecops.blogspot.com"')
                 options.add_argument('user-agent="'+ user_agent +'"')
+                # options.add_argument('user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"')
                 browser = webdriver.Chrome(chrome_driver_path, options=options)
                 if pass_random_urls: url = random.choice(urls)
                 os.system('cls||clear')
